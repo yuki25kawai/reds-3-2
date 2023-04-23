@@ -1,0 +1,224 @@
+@charset "utf-8";
+
+
+/* =============================
+　PC版
+============================= */
+body{
+    display: flex;
+    font-family: 'Martel Sans', sans-serif;
+    color: #fff;
+    background-color: #000;
+}
+header{
+    width: 20%;
+    padding-top: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+div.header-inner {
+    margin-left: 60px;
+}
+header h1{
+    font-size: 20px;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+}
+header p{
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    margin-bottom: 150px;
+}
+header hr{
+    width: 30px;
+    margin-bottom: 32px;
+}
+div.openbtn{
+    display: none;
+}
+li.nav-item{
+    list-style-type: none;
+    margin-bottom: 16px;
+}
+li.nav-item a{
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 0.3em;
+}
+li.nav-item a:hover{
+    opacity: 0.7;
+}
+main{
+    width: 80%;
+    position: absolute;
+    left: 20%;
+}
+div.container{
+    display: flex;
+    gap: 30px;
+    padding: 60px 90px;
+}
+div.container-left,
+div.container-center,
+div.container-right{
+    width: 33%;
+}
+div.container a{
+    display: block;
+    width: auto;
+    height: auto;
+    margin-bottom: 20px;
+}
+div.container img{
+    width: 100%;
+}
+
+@media (max-width: 960px) {
+    body{
+        display: block;
+    }
+    header{
+        width: 100%;
+        position: initial;
+        padding-top: 40px;
+    }
+    header h1{
+        margin-bottom: 8px;
+    }
+    header p{
+        margin-bottom: 0;
+    }
+    header hr{
+        display: none;
+    }
+    div.header-inner{
+        margin: 0 60px;
+        display: flex;
+        justify-content: space-between;
+    }
+    main{
+        width: 100%;
+        position: initial;
+    }
+    div.container{
+        padding: 60px;
+    }
+    div.openbtn{
+        display: block;
+        position: relative;/*ボタン内側の基点となるためrelativeを指定*/
+        z-index: 9999;
+        cursor: pointer;
+        width: 50px;
+        height:50px;
+    }
+    /*ボタン内側*/
+    div.openbtn span{
+        display: inline-block;
+        transition: all .4s;/*アニメーションの設定*/
+        position: absolute;
+        left: 14px;
+        height: 2px;
+        border-radius: 2px;
+        background: #fff;
+    }
+    div.openbtn span:nth-of-type(1) {
+        top:15px; 
+        width: 45%;
+    }
+    div.openbtn span:nth-of-type(2) {
+        top:23px;
+        width: 35%;
+    }
+    div.openbtn span:nth-of-type(3) {
+        top:31px;
+        width: 20%;
+    }
+    /*activeクラスが付与されると線が回転して×になる*/
+    div.openbtn.active span:nth-of-type(1) {
+        top: 18px;
+        left: 18px;
+        transform: translateY(6px) rotate(-135deg);
+        width: 30%;
+    }
+    div.openbtn.active span:nth-of-type(2) {
+    opacity: 0;
+    }
+    div.openbtn.active span:nth-of-type(3){
+        top: 30px;
+        left: 18px;
+        transform: translateY(-6px) rotate(135deg);
+        width: 30%;
+    }
+
+
+    /*========= ナビゲーションのためのCSS ===============*/
+    nav.header-nav{
+        /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+        position:fixed;
+        z-index: 999;
+        /*ナビのスタート位置と形状*/
+        top:0;
+        right: -120%;
+        width:100%;
+        height: 100vh;/*ナビの高さ*/
+        background:rgba(0, 0, 0, 0.8);
+        /*動き*/
+        transition: all 0.6s;
+    }
+    /*アクティブクラスがついたら位置を0に*/
+    nav.header-nav.panelactive{
+        right: 0;
+    }
+    /*ナビゲーションの縦スクロール*/
+    nav.header-nav.panelactive #g-nav-list{
+        /*ナビの数が増えた場合縦スクロール*/
+        position: fixed;
+        z-index: 999; 
+        width: 100%;
+        height: 100vh;/*表示する高さ*/
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    /*ナビゲーション*/
+    nav.header-nav ul {
+        /*ナビゲーション天地中央揃え*/
+        position: absolute;
+        z-index: 999;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    /*リストのレイアウト設定*/
+    nav.header-nav li.nav-item{
+        list-style: none;
+        text-align: center;
+        margin-bottom: 32px;
+    }
+    nav.header-nav li a{
+        text-decoration: none;
+        padding:10px;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: bold;
+        padding-bottom: 8px;
+    }
+}
+@media (max-width:600px) {
+    div.header-inner{
+        margin: 0 40px;
+    }
+    header h1{
+        margin-bottom: 0;
+    }
+    div.container{
+        display: block;
+        padding: 40px;
+    }
+    div.container-left,
+    div.container-center,
+    div.container-right{
+        width: 100%;
+    }
+}
